@@ -14,14 +14,12 @@ import { useIsMobile } from "@/hooks/use-mobile";
 const CATS: Category[] = ["banquet", "caterers", "decorators"];
 
 const ServicesListing = () => {
-  const { category } = useParams();
+  const params = useParams();
   const [searchParams] = useSearchParams();
   const isMobile = useIsMobile();
 
-  if (!category || !CATS.includes(category as Category)) {
-    return <Navigate to="/services/banquet" replace />;
-  }
-  const cat = category as Category;
+  const valid = !!params.category && CATS.includes(params.category as Category);
+  const cat = (valid ? params.category : "banquet") as Category;
   const meta = CATEGORY_META[cat];
 
   const [draft, setDraft] = useState<Filters>(DEFAULT_FILTERS);
