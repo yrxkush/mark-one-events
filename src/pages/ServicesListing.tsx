@@ -64,6 +64,8 @@ const ServicesListing = () => {
 
   const handleSelect = (s: Service) => setSelected(s);
 
+  if (!valid) return <Navigate to="/services/banquet" replace />;
+
   const sidebar = (
     <FilterSidebar
       filters={draft}
